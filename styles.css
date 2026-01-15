@@ -248,26 +248,26 @@ ul {
    ======================================== */
 .hero {
     position: relative;
-    min-height: 600px;
+    min-height: 650px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
     overflow: hidden;
     padding: var(--spacing-3xl) 0;
 }
 
-.hero::before {
-    content: '';
+.hero-bg-image {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image:
-        radial-gradient(circle at 20% 50%, rgba(45, 122, 79, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(107, 165, 131, 0.05) 0%, transparent 50%);
-    pointer-events: none;
+    background-image: url('hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    filter: grayscale(20%);
 }
 
 .hero-overlay {
@@ -276,41 +276,10 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%232d7a4f" opacity="0.1"/></svg>');
-    opacity: 0.3;
+    background: linear-gradient(135deg,
+        rgba(232, 245, 233, 0.95) 0%,
+        rgba(241, 248, 244, 0.92) 100%);
     pointer-events: none;
-}
-
-.hero-decoration {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.hero-grave-icon {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    opacity: 0.15;
-}
-
-.hero-grave-icon:nth-child(1) {
-    top: 10%;
-    right: 10%;
-}
-
-.hero-decoration::before {
-    content: '';
-    position: absolute;
-    bottom: -20%;
-    left: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(45, 122, 79, 0.08) 0%, transparent 70%);
 }
 
 .hero-content {
@@ -835,6 +804,67 @@ ul {
 }
 
 /* ========================================
+   ギャラリーセクション
+   ======================================== */
+.gallery {
+    padding: var(--spacing-3xl) 0;
+    background: white;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.gallery-item {
+    background: var(--color-bg-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+
+.gallery-item:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.05);
+}
+
+.gallery-content {
+    padding: var(--spacing-xl);
+}
+
+.gallery-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.gallery-text {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+/* ========================================
    お客様の声セクション
    ======================================== */
 .testimonials {
@@ -1169,6 +1199,14 @@ ul {
 
     .pricing-card-premium:hover {
         transform: scale(1.02) translateY(-8px);
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-image {
+        height: 250px;
     }
 
     .testimonials-grid {
